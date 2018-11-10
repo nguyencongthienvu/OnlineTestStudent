@@ -1,0 +1,77 @@
+<div class="header">
+    <app-header></app-header>
+  </div>
+  <div class="pages">
+    <!-- <app-page></app-page> -->
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+  </div>
+  <!-- Breadcrumb-->
+ <div class="breadcrumb-holder">
+    <div class="container-fluid">
+      <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="home" (click)="backhome()">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Đề Kiểm Tra</li>
+      </ul>
+    </div>
+  </div>
+  <section>
+      <div class="container-fluid">
+        <!-- Page Header-->
+        <header>
+          <h1 class="h3 display">Chủ Đề</h1>
+        </header>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                  <div class="row">
+                        <div class="col-lg-4">
+                          <div class="form-group">
+                            <label for="search"><strong>Mã Code</strong></label>
+                            <input type="text" class="form-control" [(ngModel)]="Course.testcode" name="testcode" id="testcode" placeholder="Nhập Mã Code" required>
+                          </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                              <label for="add"><strong></strong></label>
+                              <button id="btn_add" (click)="Exam()" name="subject-e-exam" class="form-control btn-success mt-2 btn_add" >
+                                Thi
+                              </button>
+                            </div>
+                          </div>
+                  </div>
+               
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table id="topic" class="table table-bordered table-hover" width=100%>
+                    <thead>
+                      <tr>
+                          
+                          <th>Mã Đề</th>
+                          <th>Môn</th>
+                          <th>Kiểm Từ</th>
+                          <th>Kiểm Đến</th>
+                          <th>Số Lượng Câu Hỏi</th>
+                          <th>Thời Gian</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr >
+                            <td>{{ exam.testname }}</td>
+                            <td>{{ exam.cname }}</td>
+                            <td>{{ exam.testfrom| date:"dd/MM/yyyy" }}</td>
+                            <td>{{ exam.testto| date:"dd/MM/yyyy" }}</td>
+                            <td>{{ exam.totalquestions }}</td>
+                            <td>{{ exam.duration }}</td>
+                          </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>

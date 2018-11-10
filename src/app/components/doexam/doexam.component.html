@@ -1,0 +1,52 @@
+<div class="header">
+  <app-header></app-header>
+</div>
+<div class="pages">
+  <!-- <app-page></app-page> -->
+  <router-outlet></router-outlet>
+ 
+</div>
+  <!-- Breadcrumb-->
+  <div class="breadcrumb-holder">
+    <div class="container-fluid">
+      <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="home" (click)="backhome()">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Kiểm tra</li>
+      </ul>
+    </div>
+  </div>
+  <div id="container-fluid">
+        <div class="menubar" style="text-align:center;">
+            <h2 style="font-family:helvetica,sans-serif;font-weight:bolder;font-size:120%;color:#f50000;padding-top:0.3em;letter-spacing:1px;">Tên giảng viên ra đề:
+            </h2>
+        </div>
+            <h2 style="font-family:helvetica,sans-serif;font-weight:bolder;font-size:120%;color:#f50000;padding-top:0.3em;letter-spacing:1px;">Tài khoản sinh viên:
+              </h2>
+              <!-- <div class="tc" *ngFor="let exam of exam">
+                  <textarea cols="100" rows="8" name="question" readonly style="width:96.8%;text-align:left;margin-left:2%;margin-top:2px;font-size:120%;font-weight:bold;margin-bottom:0;color:#0000ff;padding:2px 2px 2px 2px;">{{exam.question}}</textarea>
+                  <table border="0" width="100%" class="ntab">
+                      <tr><td >A. <input type="radio" name="{{exam.qnid}}" (click)="save(a.value,a.name)" value="optiona" #a>{{exam.optiona}}</td></tr>
+                      <tr><td >B. <input type="radio" name="{{exam.qnid}}" (click)="save(b.value,b.name)" value="optionb" #b>{{exam.optionb}}</td></tr>
+                      <tr><td >C. <input type="radio" name="{{exam.qnid}}" (click)="save(c.value,c.name)"  value="optionc" #c>{{exam.optionc}}</td></tr>
+                      <tr><td >D. <input type="radio" name="{{exam.qnid}}"  (click)="save(d.value,d.name)" value="optiond" #d>{{exam.optiond}}</td></tr>
+                      <tr><td>&nbsp;</td></tr>
+                  </table>
+                </div> -->
+                <form #haha = "ngForm">
+                <div class="tc" *ngFor="let exam of exam">
+                  <textarea cols="100" rows="8" name="question" readonly style="width:96.8%;text-align:left;margin-left:2%;margin-top:2px;font-size:120%;font-weight:bold;margin-bottom:0;color:#0000ff;padding:2px 2px 2px 2px;">{{exam.question}}</textarea>
+                  <table border="0" width="100%" class="ntab">
+                      <tr><td >A. <input type="radio" name="{{exam.qnid}}"  value="optiona" [(ngModel)]="exam.qnid">{{exam.optiona}}</td></tr>
+                      <tr><td >B. <input type="radio" name="{{exam.qnid}}"  value="optionb"  [(ngModel)]="exam.qnid">{{exam.optionb}}</td></tr>
+                      <tr><td >C. <input type="radio" name="{{exam.qnid}}"   value="optionc" [(ngModel)]="exam.qnid">{{exam.optionc}}</td></tr>
+                      <tr><td >D. <input type="radio" name="{{exam.qnid}}"   value="optiond" [(ngModel)]="exam.qnid">{{exam.optiond}}</td></tr>
+                      <tr><td>&nbsp;</td></tr>
+                  </table>
+                </div>
+                <tr>
+                    <th style="width:80%;"><h4><input type="submit" (click)="mark(haha)" class="ssubbtn"/></h4></th>
+                </tr>
+              </form>
+                
+             
+</div>
