@@ -41,5 +41,14 @@ private headers: Headers = new Headers({'Content-Type': 'application/json'});
     });
     return this.http.post(url,Course,{headers: headers}).toPromise();
   }
+  GetTimeAndInfo(token, Info)
+  {
+    let url: string = `${this.url.BASE_URL}/question/takeInfo`;
+    let headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': `${token}`
+    });
+    return this.http.post(url,Info,{headers: headers}).toPromise();
+  }
 
 }

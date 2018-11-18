@@ -1,4 +1,12 @@
  <!-- Breadcrumb-->
+ <div class="header">
+    <app-header></app-header>
+  </div>
+  <div class="pages">
+    <!-- <app-page></app-page> -->
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+  </div>
  <div class="breadcrumb-holder">
     <div class="container-fluid">
       <ul class="breadcrumb">
@@ -30,7 +38,7 @@
                       <div class="col-lg-3">
                         <div class="form-group">
                           <label for="takeexam"><strong></strong></label>
-                          <button [routerLink]='["/takeexam"]' (click)="takeexam()" id="takeexam" name="subject-e-exam" class="form-control btn-success mt-2" >
+                          <button (click)="takeexam()" id="takeexam" name="subject-e-exam" class="form-control btn-success mt-2" >
                            Lấy Đề Thi
                           </button>
                         </div>

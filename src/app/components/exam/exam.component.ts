@@ -23,9 +23,15 @@ export class ExamComponent implements OnInit {
   
   takeexam()
   {
-   
-    localStorage.setItem('cid', $("#course").val());
-    
+    if ($("#course").val()) {
+      this.router.navigate(['/takeexam']);  
+      localStorage.setItem('cid', $("#course").val());
+    } else {
+      this.pnotify.error({
+        text: "Vui lòng chọn môn học",
+        delay:2000   
+      });
+    }  
   }
 backhome()
   {

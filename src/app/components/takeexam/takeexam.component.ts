@@ -45,10 +45,6 @@ export class TakeexamComponent implements OnInit {
             localStorage.setItem('testid',this.exam.testid)
             this.router.navigateByUrl('/doexam');
           }
-          else
-          {
-            alert("zzz")
-          }
         }
         else if(exam.json().status === 'fail')
         {
@@ -74,6 +70,7 @@ export class TakeexamComponent implements OnInit {
   backhome()
   {
     this.router.navigate(['/home']);  
+    localStorage.removeItem("cid");
   }
   //dang xuat
   logout()
