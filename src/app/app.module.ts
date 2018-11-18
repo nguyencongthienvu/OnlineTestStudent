@@ -19,6 +19,7 @@ import { MenuComponent } from './shared/menu/menu.component';
 import { ExamComponent } from './components/exam/exam.component';
 import { TakeexamComponent } from './components/takeexam/takeexam.component';
 import { DoexamComponent } from './components/doexam/doexam.component';
+import { ChangeProfileComponent } from './components/change-profile/change-profile.component';
 
 @NgModule({
   declarations: [
@@ -31,22 +32,20 @@ import { DoexamComponent } from './components/doexam/doexam.component';
     ExamComponent,
     TakeexamComponent,
     DoexamComponent,
+    ChangeProfileComponent,
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
     RouterModule.forRoot([
+      { path: '', component: HomeComponent },
       { path: 'login', component: LoginComponent },
-      {path: 'home',component:HomeComponent,children:[
-        {path:'exam',component:ExamComponent},
-       
-        
-      ]},
+      {path: 'home',component:HomeComponent},
+      {path:'exam',component:ExamComponent},
       {path:'takeexam',component:TakeexamComponent},
-      {path: 'doexam',component:DoexamComponent}
-      
-      
+      {path: 'doexam',component:DoexamComponent},
+      {path: 'change-profile', component:ChangeProfileComponent}
     ])
   ],
   providers: [AuthService,PnotifyService,UrlServiceService,ProfileServiceService,CourseServiceService],

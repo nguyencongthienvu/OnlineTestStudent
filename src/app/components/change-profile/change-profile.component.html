@@ -1,0 +1,16 @@
+<div class="header">
+    <app-header></app-header>
+  </div>
+  <div class="pages">
+    <!-- <app-page></app-page> -->
+    <router-outlet></router-outlet>
+  </div>
+
+  <div class="breadcrumb-holder" style="background-color:#c7ea46;">
+      <div class="container-fluid">
+        <ul class="breadcrumb" style="background-color:#c7ea46;">
+          <li class="breadcrumb-item"><a routerLink="home" (click)="backhome()">Trang chủ</a></li>
+          <li class="breadcrumb-item active">Thay Đổi Profile</li>
+        </ul>
+      </div>
+    </div>
