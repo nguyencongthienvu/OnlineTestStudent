@@ -1,16 +1,129 @@
 <div class="header">
-    <app-header></app-header>
-  </div>
-  <div class="pages">
-    <!-- <app-page></app-page> -->
-    <router-outlet></router-outlet>
-  </div>
-
+  <app-header></app-header>
+</div>
+<div class="pages">
+  <!-- <app-page></app-page> -->
   <div class="breadcrumb-holder" style="background-color:#c7ea46;">
-      <div class="container-fluid">
-        <ul class="breadcrumb" style="background-color:#c7ea46;">
-          <li class="breadcrumb-item"><a routerLink="home" (click)="backhome()">Trang chủ</a></li>
-          <li class="breadcrumb-item active">Thay Đổi Profile</li>
-        </ul>
+    <div class="container-fluid">
+      <ul class="breadcrumb" style="background-color:#c7ea46;">
+        <li class="breadcrumb-item"><a routerLink="home" (click)="backhome()">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Thông Tin Cá Nhân</li>
+      </ul>
+    </div>
+  </div>
+<div class="modal-dialog modal-dialog-centered modal-lg profile" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Thông tin cá nhân</h5>
+      <button type="button" class="btn btn-primary fa fa-edit text-light float-right btn_add nobackground">
+        </button>
+    </div>
+    <div class="modal-body">
+        <div id="Employee" class="reviewBlock" data-content="List" style="padding-left: 5px;">
+          <div class="row">
+            <div class="col-xs-12 col-md-4">
+              <div class="row-fluid">
+                <div class="col-xs-12" style="text-align: center;">
+                 
+                </div>
+          
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-8">       
+          
+              <div class="row-fluid" style="border-top: 1px;">
+                <div class="col-xs-12 col-md-12" style="font-size:16px;">
+                  <label class="control-label col-xs-12" style="font-size:13px;font-size:13px;">Tài Khoản:</label>
+                  <label class="control-label col-xs-12 iceLabel" style="font-size:13px;font-weight: bold;" id="id">{{profileList?.username}}</label>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          <div class="row">
+              <div class="col-lg-6 col-md-6">
+                  <div class="row" style="margin-left:10px;margin-top:20px;">
+                    <div class="panel panel-default" style="width:97.5%;">
+                      <div class="panel-heading"><h4>Thông tin</h4></div>
+                      <div class="panel-body" id="cont_personal_information">
+    
+                        <div class="col-xs-12 col-md-12" style="font-size:16px;">
+                          <label class="control-label col-xs-12" style="font-size:13px;">Tên Đầy Đủ:</label>
+                          <label class="control-label col-xs-12 iceLabel" style="font-size:13px;font-weight: bold;" id="bd">{{profileList?.fullname}}</label>
+                        </div>
+                        <div class="col-xs-12 col-md-12" style="font-size:16px;">
+                          <label class="control-label col-xs-12" style="font-size:13px;">Giới tính:</label>
+                          <label class="control-label col-xs-12 iceLabel" style="font-size:13px;font-weight: bold;" id="gd">{{profileList?.sex}}</label>
+                        </div>
+                        <div class="col-xs-12 col-md-12" style="font-size:16px;">
+                          <label class="control-label col-xs-12" style="font-size:13px;">Email:</label>
+                          <label class="control-label col-xs-12 iceLabel" style="font-size:13px;font-weight: bold;" id="em1">{{profileList?.email}}</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6">      
+                    <div class="row" style="margin-left:10px;margin-top:20px;">
+                        <div class="panel panel-default" style="width:97.5%;">
+                          <div class="panel-heading"><h4>Hiện trạng</h4></div>
+                          <div class="panel-body" id="cont_job_details">
+                            <div class="col-xs-12 col-md-12" style="font-size:16px;">
+                              <label class="control-label col-xs-12" style="font-size:13px;">Trạng thái:</label>
+                              <label class="control-label col-xs-12 iceLabel" style="font-size:13px;font-weight: bold;" id="st" *ngIf="profileList?.active ==0">Đang Hoạt Động</label>
+                              <label class="control-label col-xs-12 iceLabel" style="font-size:13px;font-weight: bold;" id="st" *ngIf="profileList?.active ==1">Nghỉ</label>
+                            </div>           
+                          </div>
+                        </div>
+                      </div>
+                </div>
+          </div>
+          
+
+        </div>
+    
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
+</div>
+<div class="modal fade" id="profileedit" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Thông Tin Cá Nhân</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          
+        </div>
+        <div class="modal-body" *ngFor = "let profileEdit of profileListEdit">
+          <form >
+              <div class="form-group">
+                <label for="fullname"><strong>Tên Đầy Đủ</strong></label>
+                  <input  type="text" class="form-control" [(ngModel)]="profileEdit.fullname" name="fullname" id="fullname"   required>
+              </div>
+              <div class="form-group ">
+                <label for="sex" ><strong>Giới Tính</strong></label>
+               
+                 <input type="text" class="form-control" [(ngModel)]="profileEdit.sex" name="sex" id="sex" required>
+              </div>
+              <div class="form-group ">
+                  <label for="email" ><strong>Email</strong></label>
+                 
+                   <input type="text" class="form-control" [(ngModel)]="profileEdit.email" name="email" id="email" required>
+              </div>
+              <div class="form-group ">
+                    <label for="password" ><strong>Password</strong></label>
+                   
+                     <input type="password" class="form-control" [(ngModel)]="profileEdit.password" name="password" id="password" required>
+              </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary"  (click)="Edit()" data-dismiss="modal">Sửa</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+        </div>
       </div>
     </div>
+  </div> 
