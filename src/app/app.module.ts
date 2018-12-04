@@ -9,6 +9,7 @@ import { PnotifyService } from './services/pnotify.service.service';
 import { UrlServiceService } from './services/url-service.service';
 import {ProfileServiceService} from './services/profile-service.service';
 import {CourseServiceService} from './services/course-service.service';
+import {PaginationService} from './services/pagination.service';
 //Components
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
@@ -48,7 +49,7 @@ import { ChangeProfileComponent } from './components/change-profile/change-profi
       {path: 'change-profile', component:ChangeProfileComponent}
     ])
   ],
-  providers: [AuthService,PnotifyService,UrlServiceService,ProfileServiceService,CourseServiceService],
+  providers: [AuthService,PnotifyService,UrlServiceService,ProfileServiceService,CourseServiceService, PaginationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -26,8 +26,8 @@
             <h2 style="text-align:center;font-family:helvetica,sans-serif;font-weight:bolder;font-size:120%;color:#f50000;padding-top:0.3em;letter-spacing:1px;">Tài khoản sinh viên: {{info?.username}}
               </h2>
                 <form #haha = "ngForm">
-                <div class="tc" *ngFor="let exam of exam; let i = index;">
-                  <div style="width:96.8%;text-align:left;margin-left:2%;margin-top:2px;font-size:120%;font-weight:bold;margin-bottom:0;color:Red;padding:2px 2px 2px 2px;">Câu {{i+1}}</div>
+                <div class="tc" *ngFor="let exam of pagedItems;"> 
+                  <div style="width:96.8%;text-align:left;margin-left:2%;margin-top:2px;font-size:120%;font-weight:bold;margin-bottom:0;color:Red;padding:2px 2px 2px 2px;">Câu {{pager?.currentPage}}</div>
                   <textarea cols="100" rows="8" name="question" readonly style="width:96.8%;text-align:left;margin-left:2%;margin-top:2px;font-size:120%;font-weight:bold;margin-bottom:0;color:#0000ff;padding:2px 2px 2px 2px;">{{exam.question}}</textarea>
                   <table border="0" width="100%" class="ntab" style="width:96.8%;text-align:left;margin-left:2%;margin-top:2px;font-size:120%;font-weight:bold;margin-bottom:0;color:Red;padding:2px 2px 2px 2px;">
                       <tr><td ><input type="radio" name="{{exam.optiona}}"  value="optiona" [(ngModel)]="exam.qnid">A. {{exam.optiona}}</td></tr>
@@ -37,9 +37,11 @@
                       <tr><td>&nbsp;</td></tr>
                   </table>
                 </div>
-                <tr>
-                    <th style="width:80%;"><h4><input type="submit" (click)="mark(exam)" class="ssubbtn"/></h4></th>
-                </tr>
+                <div style="display:flex; text-align:center; justify-content:center">
+                    <h4><input type="submit" (click)="mark(exam)" class="ssubbtn check"/></h4>
+                    <span ><h4 *ngIf="pager.currentPage !== pager.totalPages"><input type="submit" (click)="setPage(pager.currentPage + 1)" value="Tiếp" class="ssubbtn"/></h4></span>
+                    <div *ngIf="pager.currentPage !== 1"><h4><input type="submit" (click)="setPage(pager.currentPage - 1)" value="Trở Về" class="ssubbtn"/></h4></div>
+                </div>
               </form>
                 
              

@@ -3,6 +3,7 @@ import { CourseServiceService } from '../../services/course-service.service';
 import { Router } from '@angular/router';
 import { PnotifyService } from '../../services/pnotify.service.service';
 import { Course } from '../../models/course';
+import { PaginationService } from "../../services/pagination.service";
 declare var $:any;
 var self : any;
 var tbl : any;
@@ -22,7 +23,10 @@ export class DoexamComponent implements OnInit {
   a:any=[];
   marksum:any=0;
   result:any=[];
-  constructor(private router: Router,private getcourse: CourseServiceService, pnotifyService: PnotifyService) {
+  public pager: any = {};
+  // paged items
+  public pagedItems: any[];
+  constructor(private router: Router,private getcourse: CourseServiceService, pnotifyService: PnotifyService, private pagerService: PaginationService,) {
     this.list_data_exam();
     this.pnotify = pnotifyService.getPNotify();
     this.getTimeAndInfo();
@@ -150,6 +154,7 @@ export class DoexamComponent implements OnInit {
         if(exam.json().errorCode==0)
         {
           this.exam = exam.json().data;
+          this.setPage(1);
         }
         else if(exam.json().status === 'fail')
         {
@@ -171,6 +176,14 @@ export class DoexamComponent implements OnInit {
       });
     }
   }
+}
+
+public setPage(page: number) {
+  // get pager object from service
+  this.pager = this.pagerService.getPager(this.exam.length, page);
+  console.log(this.pager)
+  // get current page of items
+  this.pagedItems = this.exam.slice(this.pager.startIndex, this.pager.endIndex + 1);
 }
 
 public getTimeAndInfo() {
