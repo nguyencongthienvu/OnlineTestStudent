@@ -23,9 +23,12 @@ export class DoexamComponent implements OnInit {
   a:any=[];
   marksum:any=0;
   result:any=[];
+  public answer: any = [];
   public pager: any = {};
   // paged items
   public pagedItems: any[];
+  public answerPager: any = {};
+  public pagedAnser: any[];
   constructor(private router: Router,private getcourse: CourseServiceService, pnotifyService: PnotifyService, private pagerService: PaginationService,) {
     this.list_data_exam();
     this.pnotify = pnotifyService.getPNotify();
@@ -44,9 +47,9 @@ export class DoexamComponent implements OnInit {
 
   mark(data)
   {
-    for(var i = 0, j =0;i<this.exam.length&& j<this.exam.length;i++,j++)
+    for(var i = 0, j =0;i<this.exam.length&& j<this.answer.length;i++,j++)
     { 
-      if(data[i].qnid == this.exam[j].correctanswer)
+      if(data[i].correctanswer == this.answer[j].stdanswer)
       {
         this.marksum += parseInt(this.exam[j].mark); 
       }
@@ -103,6 +106,15 @@ export class DoexamComponent implements OnInit {
   }
   }
 
+  public updateAnswer(value, data) {
+    const token = localStorage.getItem("token");
+    this.getcourse.updateStudentAnswer(data, value, token).then((success) => {
+      
+    }, (error) => {
+      console.log(error);
+    })
+  }
+
   public getTime(info) {
     self = this;
     var countDownDate = new Date(info.testto).getTime();
@@ -142,6 +154,13 @@ export class DoexamComponent implements OnInit {
   list_data_exam(){
     this.Course ={
       "testid": localStorage.getItem('testid'),
+      "token": localStorage.getItem("token"),
+      "uid": localStorage.getItem("uid"),
+    }
+    const Data = {
+      "testid": localStorage.getItem('testid'),
+      "token": localStorage.getItem("token"),
+      "uid": localStorage.getItem("uid"),
     }
     const token = localStorage.getItem('token');
     if(token == '' || token == null)
@@ -154,7 +173,10 @@ export class DoexamComponent implements OnInit {
         if(exam.json().errorCode==0)
         {
           this.exam = exam.json().data;
-          this.setPage(1);
+          this.getcourse.getStudentAnswer(Data, token).then((result)=>{
+            this.answer = result.json().data;
+            this.setPage(1);
+          })
         }
         else if(exam.json().status === 'fail')
         {
@@ -181,9 +203,10 @@ export class DoexamComponent implements OnInit {
 public setPage(page: number) {
   // get pager object from service
   this.pager = this.pagerService.getPager(this.exam.length, page);
-  console.log(this.pager)
+  this.answerPager = this.pagerService.getPager(this.answer.length, page);
   // get current page of items
   this.pagedItems = this.exam.slice(this.pager.startIndex, this.pager.endIndex + 1);
+  this.pagedAnser = this.answer.slice(this.answerPager.startIndex, this.answerPager.endIndex + 1);
 }
 
 public getTimeAndInfo() {

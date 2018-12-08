@@ -26,16 +26,18 @@
             <h2 style="text-align:center;font-family:helvetica,sans-serif;font-weight:bolder;font-size:120%;color:#f50000;padding-top:0.3em;letter-spacing:1px;">Tài khoản sinh viên: {{info?.username}}
               </h2>
                 <form #haha = "ngForm">
-                <div class="tc" *ngFor="let exam of pagedItems;"> 
+                <div class="tc" *ngFor="let exam of pagedItems"> 
+                  <div *ngFor =" let stdanswer of pagedAnser">
                   <div style="width:96.8%;text-align:left;margin-left:2%;margin-top:2px;font-size:120%;font-weight:bold;margin-bottom:0;color:Red;padding:2px 2px 2px 2px;">Câu {{pager?.currentPage}}</div>
                   <textarea cols="100" rows="8" name="question" readonly style="width:96.8%;text-align:left;margin-left:2%;margin-top:2px;font-size:120%;font-weight:bold;margin-bottom:0;color:#0000ff;padding:2px 2px 2px 2px;">{{exam.question}}</textarea>
                   <table border="0" width="100%" class="ntab" style="width:96.8%;text-align:left;margin-left:2%;margin-top:2px;font-size:120%;font-weight:bold;margin-bottom:0;color:Red;padding:2px 2px 2px 2px;">
-                      <tr><td ><input type="radio" name="{{exam.optiona}}"  value="optiona" [(ngModel)]="exam.qnid">A. {{exam.optiona}}</td></tr>
-                      <tr><td ><input type="radio" name="{{exam.optionb}}"  value="optionb"  [(ngModel)]="exam.qnid">B. {{exam.optionb}}</td></tr>
-                      <tr><td ><input type="radio" name="{{exam.optionc}}"   value="optionc" [(ngModel)]="exam.qnid">C. {{exam.optionc}}</td></tr>
-                      <tr><td ><input type="radio" name="{{exam.optiond}}"   value="optiond" [(ngModel)]="exam.qnid">D. {{exam.optiond}}</td></tr>
+                      <tr><td ><input type="radio" name="{{exam.optiona}}"  value="optiona" [(ngModel)]="stdanswer.stdanswer"  (click)="updateAnswer(optiona.value, stdanswer)" #optiona>A. {{exam.optiona}}</td></tr>
+                      <tr><td ><input type="radio" name="{{exam.optionb}}"  value="optionb"  [(ngModel)]="stdanswer.stdanswer" (click)="updateAnswer(optionb.value, stdanswer)" #optionb>B. {{exam.optionb}}</td></tr>
+                      <tr><td ><input type="radio" name="{{exam.optionc}}"  value="optionc" [(ngModel)]="stdanswer.stdanswer"  (click)="updateAnswer(optionc.value, stdanswer)" #optionc>C. {{exam.optionc}}</td></tr>
+                      <tr><td ><input type="radio" name="{{exam.optiond}}"  value="optiond" [(ngModel)]="stdanswer.stdanswer"  (click)="updateAnswer(optiond.value, stdanswer)" #optiond>D. {{exam.optiond}}</td></tr>
                       <tr><td>&nbsp;</td></tr>
                   </table>
+                </div>
                 </div>
                 <div style="display:flex; text-align:center; justify-content:center">
                     <h4><input type="submit" (click)="mark(exam)" class="ssubbtn check"/></h4>

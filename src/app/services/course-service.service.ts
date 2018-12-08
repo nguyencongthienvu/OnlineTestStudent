@@ -32,6 +32,22 @@ private headers: Headers = new Headers({'Content-Type': 'application/json'});
     });
     return this.http.post(url,Course,{headers: headers}).toPromise();
   }
+  getStudentAnswer(Data,token) {
+    let url: string = `${this.url.BASE_URL}/question/stdanswer`;
+    let headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': `${token}`
+    });
+    return this.http.post(url,Data,{headers: headers}).toPromise();
+  }
+  updateStudentAnswer(Data, Value, token) {
+    let url: string = `${this.url.BASE_URL}/question/updateAnswer`;
+    let headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': `${token}`
+    });
+    return this.http.post(url,{Data,Value},{headers: headers}).toPromise();
+  }
   Result(Course:Course,token)
   {
     let url: string = `${this.url.BASE_URL}/test/result`;
