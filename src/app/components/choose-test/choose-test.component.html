@@ -1,0 +1,68 @@
+<div class="header">
+  <app-header></app-header>
+</div>
+<div class="pages">
+  <!-- <app-page></app-page> -->
+  <router-outlet></router-outlet>
+  <div class="breadcrumb-holder" style="background-color:#c7ea46;">
+    <div class="container-fluid">
+      <ul class="breadcrumb" style="background-color:#c7ea46;">
+        <li class="breadcrumb-item">
+          <a routerLink="home" (click)="backhome()">Trang chủ</a>
+        </li>
+        <li class="breadcrumb-item active">Chọn Kết Quả</li>
+      </ul>
+    </div>
+  </div>
+  <app-footer></app-footer>
+  <section>
+    <div class="container-fluid">
+      <!-- Page Header-->
+      <header>
+        <h1 class="h3 display">Chọn Môn Học</h1>
+      </header>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="row">
+                <div class="col-lg-3">
+                  <div class="form-group">
+                    <label for="course">
+                      <strong>Môn Học</strong>
+                    </label>
+                    <select id="course" name="course" class="form-control select2">
+                      <option *ngFor="let course of course" [value]=course.cid>{{course.cname}}</option>
+                      <option></option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-lg-3">
+                  <div class="form-group">
+                    <label for="exam">
+                      <strong>Bài Kiểm Tra</strong>
+                    </label>
+                    <select id="exam" name="exam" class="form-control select2">
+                      <option *ngFor="let exam of exam" [value]=exam.testid>Đề {{exam.testname}}</option>
+                      <option></option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-lg-3">
+                  <div class="form-group">
+                    <label for="takeexam">
+                      <strong></strong>
+                    </label>
+                    <button (click)="takeexam()" id="takeexam" name="subject-e-exam" class="form-control btn-success mt-2">
+                      Xem Kết Quả
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
