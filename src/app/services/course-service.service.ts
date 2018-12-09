@@ -48,18 +48,46 @@ private headers: Headers = new Headers({'Content-Type': 'application/json'});
     });
     return this.http.post(url,{Data,Value},{headers: headers}).toPromise();
   }
-  Result(Course:Course,token)
+  Result(Course:Course,data,answer,token)
   {
     let url: string = `${this.url.BASE_URL}/test/result`;
     let headers: Headers = new Headers({
       'Content-Type': 'application/json',
       'Authorization': `${token}`
     });
-    return this.http.post(url,Course,{headers: headers}).toPromise();
+    return this.http.post(url,{Course, data, answer},{headers: headers}).toPromise();
+  }
+  getReport(Data,token)
+  {
+    let url: string = `${this.url.BASE_URL}/test/getAnswer`;
+    let headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': `${token}`
+    });
+    return this.http.post(url,Data,{headers: headers}).toPromise();
+  }
+  getDetailReport(Data,token)
+  {
+    let url: string = `${this.url.BASE_URL}/test/getDetailAnswer`;
+    let headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': `${token}`
+    });
+    return this.http.post(url,Data,{headers: headers}).toPromise();
   }
   GetTimeAndInfo(token, Info)
   {
     let url: string = `${this.url.BASE_URL}/question/takeInfo`;
+    let headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': `${token}`
+    });
+    return this.http.post(url,Info,{headers: headers}).toPromise();
+  }
+
+  GetExamForResult(token, Info)
+  {
+    let url: string = `${this.url.BASE_URL}/test/chooseExam`;
     let headers: Headers = new Headers({
       'Content-Type': 'application/json',
       'Authorization': `${token}`

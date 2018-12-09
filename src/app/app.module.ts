@@ -21,6 +21,8 @@ import { ExamComponent } from './components/exam/exam.component';
 import { TakeexamComponent } from './components/takeexam/takeexam.component';
 import { DoexamComponent } from './components/doexam/doexam.component';
 import { ChangeProfileComponent } from './components/change-profile/change-profile.component';
+import { GetResultComponent } from './components/get-result/get-result.component';
+import { ChooseTestComponent } from './components/choose-test/choose-test.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { ChangeProfileComponent } from './components/change-profile/change-profi
     TakeexamComponent,
     DoexamComponent,
     ChangeProfileComponent,
+    GetResultComponent,
+    ChooseTestComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +50,9 @@ import { ChangeProfileComponent } from './components/change-profile/change-profi
       {path:'exam',component:ExamComponent},
       {path:'takeexam',component:TakeexamComponent},
       {path: 'doexam',component:DoexamComponent},
-      {path: 'change-profile', component:ChangeProfileComponent}
+      {path: 'change-profile', component:ChangeProfileComponent},
+      {path: 'getResult', component:GetResultComponent},
+      {path: 'chooseTest', component:ChooseTestComponent},
     ])
   ],
   providers: [AuthService,PnotifyService,UrlServiceService,ProfileServiceService,CourseServiceService, PaginationService],

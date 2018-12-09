@@ -4,8 +4,6 @@
 <div class="pages">
   <!-- <app-page></app-page> -->
   <router-outlet></router-outlet>
- 
-</div>
   <!-- Breadcrumb-->
   <div class="breadcrumb-holder" style="background-color:#c7ea46;">
     <div class="container-fluid">
@@ -40,11 +38,12 @@
                 </div>
                 </div>
                 <div style="display:flex; text-align:center; justify-content:center">
-                    <h4><input type="submit" (click)="mark(exam)" class="ssubbtn check"/></h4>
+                    <h4><input type="submit" (click)="mark(exam, stdanswer)" class="ssubbtn check"/></h4>
                     <span ><h4 *ngIf="pager.currentPage !== pager.totalPages"><input type="submit" (click)="setPage(pager.currentPage + 1)" value="Tiếp" class="ssubbtn"/></h4></span>
                     <div *ngIf="pager.currentPage !== 1"><h4><input type="submit" (click)="setPage(pager.currentPage - 1)" value="Trở Về" class="ssubbtn"/></h4></div>
                 </div>
               </form>
                 
-             
+              
+</div>
 </div>

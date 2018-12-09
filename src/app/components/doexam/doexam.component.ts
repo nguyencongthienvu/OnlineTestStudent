@@ -30,10 +30,13 @@ export class DoexamComponent implements OnInit {
   public answerPager: any = {};
   public pagedAnser: any[];
   constructor(private router: Router,private getcourse: CourseServiceService, pnotifyService: PnotifyService, private pagerService: PaginationService,) {
-    this.list_data_exam();
-    this.pnotify = pnotifyService.getPNotify();
-    this.getTimeAndInfo();
-    
+    if (localStorage.getItem("test") == "true") {
+      this.list_data_exam();
+      this.pnotify = pnotifyService.getPNotify();
+      this.getTimeAndInfo();
+    } else {
+      this.router.navigate(['/home']);  
+    }
    }
   backhome()
   {
@@ -45,26 +48,13 @@ export class DoexamComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
 
-  mark(data)
+  mark(data, stdanswer)
   {
-    for(var i = 0, j =0;i<this.exam.length&& j<this.answer.length;i++,j++)
-    { 
-      if(data[i].correctanswer == this.answer[j].stdanswer)
-      {
-        this.marksum += parseInt(this.exam[j].mark); 
-      }
-      else
-      {
-        this.marksum +=0;
-      }
-     
-    }
     this.Course ={
       "stdid": localStorage.getItem('std'),
       "cid": localStorage.getItem('cid'),
       "uid": localStorage.getItem('uid'),
       "testid": localStorage.getItem('testid'),
-      "marks":this.marksum,
       "testdate":new Date()
     }
     const token = localStorage.getItem('token');
@@ -74,15 +64,16 @@ export class DoexamComponent implements OnInit {
     }else{
     if (token) {
       
-      this.getcourse.Result(this.Course,token).then((result) => {
+      this.getcourse.Result(this.Course,data,this.answer,token).then((result) => {
         if(result.json().errorCode==0)
         {
           this.result = result.json().data;
+          localStorage.setItem("test","false");
           this.pnotify.success({
-            text:"điểm của bạn là: "+this.marksum,
+            text:"điểm của bạn là: "+this.result,
             delay: 15000
           })
-          this.router.navigate(['/home']);
+          this.router.navigate(['/getResult']);
         }
         else if(result.json().status === 'fail')
         {
@@ -141,8 +132,7 @@ export class DoexamComponent implements OnInit {
       if (distance == 0 || distance < 0 ) {
         clearInterval(x);
         document.getElementById("demo").innerHTML = "EXPIRED";
-        localStorage.clear();
-        self.logout();
+        self.mark(self.exam, self.answer);
       } else if (distance < 1200000 && distance > 420000) {
         document.getElementById("message").innerHTML = "SẮP HẾT THỜI GIAN.VUI LÒNG ĐÁNH DẤU CÁC CÂU VÀ ẤN GỬI!";
       } else if (distance < 420000 && distance >0) {

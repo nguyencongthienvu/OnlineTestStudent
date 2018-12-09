@@ -43,6 +43,7 @@ export class TakeexamComponent implements OnInit {
           if(this.testcode == this.exam.code)
           {
             localStorage.setItem('testid',this.exam.testid)
+            localStorage.setItem('test', "true");
             this.router.navigateByUrl('/doexam');
           }
         }
